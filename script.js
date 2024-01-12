@@ -4,32 +4,9 @@
  * Globalt objekt som innehåller de attribut som ni skall använda.
  * Initieras genom anrop till funktionern initGlobalObject().
  */
-let oGameData = {
-    playerOne: "X",
-    playerTwo: "O",
-    currentPlayer: "",
-    nickNamePlayerOne: "",
-    nickNamePlayerTwo: "",
-    colorPlayerOne: "",
-    colorPlayerTwo: "",
-    seconds: 5,
-    gameField: ['', '', '', '', '', '', '', '', ''],
-    timerEnabled: false,
-    timerId: null,
-    timeRef: document.querySelector("#errorMsg")
-};
+let oGameData = {};
 
 initGlobalObject();
-checkForGameOver();
-checkWinner();
-checkForDraw();
-prepGame();
-validateForm();
-initiateGame();
-startGame();
-changePlayer();
-timer();
-gameOver();
 
 /**
  * Initerar det globala objektet med de attribut som ni skall använda er av.
@@ -39,15 +16,15 @@ gameOver();
 function initGlobalObject() {
 
     //Datastruktur för vilka platser som är lediga respektive har brickor
-    //Genom att fylla i här med antingen X eler O kan ni testa era rättningsfunktioner 
-    oGameData.gameField = ['O', 'O', 'O', '', '', '', '', '', ''];
-
+    //Genom at fylla i här med antingen X eler O kan ni testa era rättningsfunktioner 
+    oGameData.gameField = ['', '', '', '', '', '', '', '', ''];
+    
     /* Testdata för att testa rättningslösning */
-    // oGameData.gameField = ['X', 'X', 'X', '', '', '', '', '', ''];
-    // oGameData.gameField = ['X', '', '', 'X', '', '', 'X', '', ''];
-    // oGameData.gameField = ['X', '', '', '', 'X', '', '', '', 'X'];
-    // oGameData.gameField = ['', '', 'X', '', 'X', '', 'X', '', ''];
-    // oGameData.gameField = ['X', 'O', 'X', '0', 'X', 'O', 'O', 'X', 'O'];
+    //oGameData.gameField = ['X', 'X', 'X', '', '', '', '', '', ''];
+    //oGameData.gameField = ['X', '', '', 'X', '', '', 'X', '', ''];
+    //oGameData.gameField = ['X', '', '', '', 'X', '', '', '', 'X'];
+    //oGameData.gameField = ['', '', 'X', '', 'X', '', 'X', '', ''];
+    //oGameData.gameField = ['X', 'O', 'X', '0', 'X', 'O', 'O', 'X', 'O'];
 
     //Indikerar tecknet som skall användas för spelare ett.
     oGameData.playerOne = "X";
@@ -91,17 +68,17 @@ function initGlobalObject() {
  * returnerar 3 om det är oavgjort.
  * Funktionen tar inte emot några värden.
  */
-function checkForGameOver() {
+function checkForGameOver() {   
     //Kontrollerar om "X" vunnit genom att köra rättningsfunktionerna, om så är fallet returneras 1
-    if (checkWinner('X')) {
-        return 1;
+    if (checkWinner('X')){
+       return 1;
     }
     //Kontrollerar om "O" vunnit genom att köra rättningsfunktionerna, om så är fallet returneras 2
-    if (checkWinner('O')) {
+    if (checkWinner('O')){
         return 2;
     }
     //Kontrollerar om spelet är oavgjort, returnerar isåfall 3
-    if (checkForDraw()) {
+    if(checkForDraw()) {
         return 3;
     }
     //Annars returneras 0, och spelet fortlöper
@@ -117,39 +94,8 @@ function checkForGameOver() {
 //som motsvarar nuvarande combo innehåller playerIn. Om sant, ändra värdet på flaggan.
 //Returnera flaggan isWinner
 function checkWinner(playerIn) {
-    let winningCombinations = [
-        [1, 2, 3],
-        [1, 4, 7],
-        [1, 5, 9],
-        [4, 5, 6],
-        [7, 8, 9],
-        [2, 5, 8],
-        [3, 6, 9],
-        [3, 5, 7]
-    ];
 
-    let isWinner = false;
-
-    for (let i = 0; i < winningCombinations.length; i++) {
-        let combo = winningCombinations[i];
-        let comboIsWinner = true;
-
-        for (let j = 0; j < combo.length; j++) {
-            let pos = combo[j];
-
-            if (oGameData.gameField[pos - 1] !== playerIn) {
-                comboIsWinner = false;
-            }
-        }
-
-        if (comboIsWinner) {
-            isWinner = true;
-        }
-    }
-
-    return isWinner;
 }
-    
 
 //Kontrollera om alla platser i oGameData.GameField är fyllda. Om sant returnera true, annars false.
 function checkForDraw() {
@@ -169,7 +115,7 @@ function initiateGame() {
 
 }
 
-function startGame() {
+function startGame () {
 
 }
 
