@@ -4,22 +4,10 @@
  * Globalt objekt som innehåller de attribut som ni skall använda.
  * Initieras genom anrop till funktionern initGlobalObject().
  */
-let oGameData = {
-    playerOne: "X",
-    playerTwo: "O",
-    currentPlayer: "",
-    nickNamePlayerOne: "",
-    nickNamePlayerTwo: "",
-    colorPlayerOne: "",
-    colorPlayerTwo: "",
-    seconds: 5,
-    gameField: ['', '', '', '', '', '', '', '', ''],
-    timerEnabled: false,
-    timerId: null,
-    timeRef: document.querySelector("#errorMsg")
-};
+let oGameData = {};
 
 initGlobalObject();
+
 prepGame();
 // checkForGameOver();
 // checkWinner();
@@ -32,6 +20,8 @@ prepGame();
 // gameOver();
 // executeMove()
 
+
+
 /**
  * Initerar det globala objektet med de attribut som ni skall använda er av.
  * Funktionen tar inte emot några värden.
@@ -40,15 +30,21 @@ prepGame();
 function initGlobalObject() {
 
     //Datastruktur för vilka platser som är lediga respektive har brickor
+
     //Genom att fylla i här med antingen X eler O kan ni testa era rättningsfunktioner 
     oGameData.gameField = ['', '', '', '', '', '', '', '', ''];
 
+
+    //Genom at fylla i här med antingen X eler O kan ni testa era rättningsfunktioner 
+    oGameData.gameField = ['', '', '', '', '', '', '', '', ''];
+    
+
     /* Testdata för att testa rättningslösning */
-    // oGameData.gameField = ['X', 'X', 'X', '', '', '', '', '', ''];
-    // oGameData.gameField = ['X', '', '', 'X', '', '', 'X', '', ''];
-    // oGameData.gameField = ['X', '', '', '', 'X', '', '', '', 'X'];
-    // oGameData.gameField = ['', '', 'X', '', 'X', '', 'X', '', ''];
-    // oGameData.gameField = ['X', 'O', 'X', '0', 'X', 'O', 'O', 'X', 'O'];
+    //oGameData.gameField = ['X', 'X', 'X', '', '', '', '', '', ''];
+    //oGameData.gameField = ['X', '', '', 'X', '', '', 'X', '', ''];
+    //oGameData.gameField = ['X', '', '', '', 'X', '', '', '', 'X'];
+    //oGameData.gameField = ['', '', 'X', '', 'X', '', 'X', '', ''];
+    //oGameData.gameField = ['X', 'O', 'X', '0', 'X', 'O', 'O', 'X', 'O'];
 
     //Indikerar tecknet som skall användas för spelare ett.
     oGameData.playerOne = "X";
@@ -92,17 +88,17 @@ function initGlobalObject() {
  * returnerar 3 om det är oavgjort.
  * Funktionen tar inte emot några värden.
  */
-function checkForGameOver() {
+function checkForGameOver() {   
     //Kontrollerar om "X" vunnit genom att köra rättningsfunktionerna, om så är fallet returneras 1
-    if (checkWinner('X')) {
-        return 1;
+    if (checkWinner('X')){
+       return 1;
     }
     //Kontrollerar om "O" vunnit genom att köra rättningsfunktionerna, om så är fallet returneras 2
-    if (checkWinner('O')) {
+    if (checkWinner('O')){
         return 2;
     }
     //Kontrollerar om spelet är oavgjort, returnerar isåfall 3
-    if (checkForDraw()) {
+    if(checkForDraw()) {
         return 3;
     }
     //Annars returneras 0, och spelet fortlöper
@@ -118,6 +114,7 @@ function checkForGameOver() {
 //I varje loop kontrollerar ni om alla platser i oGameData.GameField 
 //som motsvarar nuvarande combo innehåller playerIn. Om sant, ändra värdet på flaggan.
 //Returnera flaggan isWinner
+
 function checkWinner(playerIn, numberOfMoves) {
 
 /*
@@ -156,6 +153,10 @@ function checkWinner(playerIn, numberOfMoves) {
 
     return isWinner; // Returnera om spelaren har vunnit eller inte
     console.log(`Nu är vi längst ner i checkWinner`);
+
+function checkWinner(playerIn) {
+
+
 }
 
 
@@ -259,6 +260,7 @@ function initiateGame() {
     console.log(`Nu är vi längst ner i initiateGame`);
 }
 
+
 function executeMove(clickedBox) {
 
     const cell = clickedBox.target; // Får tag i den cellen som blir klickad
@@ -272,6 +274,9 @@ function executeMove(clickedBox) {
 
         changePlayer(clickedBox)
     }
+
+function startGame () {
+
 
 
     let gameResultForGameOver = checkForGameOver(); // Kör funktionen checkForGameOver och lagrar resultatet i variabeln gameResultForGameOver
@@ -361,5 +366,7 @@ function gameOver(gameResultNmbr) { // Parametern gameResult är ett nummer som 
     initGlobalObject();
 
     console.log(`Nu är vi längst ner i gameOver`);
+}
+
 }
 
